@@ -1,0 +1,174 @@
+Part1-SDET Essentials | Jenkins Build & Delivery Pipeline | CI & CD | How to create Jenkins Pipeline
+
+file:///C:/ProgramData/Jenkins/.jenkins/secrets/initialAdminPassword
+2f1194e9919d436c983f01de6d9bfc7e
+sdbhosale - 110917f53b3f79c62ea4f9f85386c52cf6
+---
+http://localhost:8080/
+admin
+Jenkins@8080
+---
+How to setup build pipeline in jenkins :
+Step 1: Chain required jobs in sequence add upstream/downstream jobs
+step 2: Install Build Pipeline Plugin
+Step 3 : Add
+	 Build Pipeline View
+	 Configure the view step
+Step 4:  Run and validate
+---
+SampleBuildJob
+Freestyle Project
+Execute shell
+date
+echo "Build job successfully Excuted! Done..."
+apply and save.
+---
+SampleDeployJob
+Freestyle project
+Ok button
+Build section -> Execute shell
+date
+echo "Deploy job successfully Excuted! Done..."
+apply 
+ok
+---
+SampleTestJob
+Freestyle project
+Ok button
+Build section -> Execute shell
+date
+echo "Test job successfully Excuted! Done..."
+apply 
+ok
+---
+SampleReleaseJob
+Freestyle project
+Ok button
+Build section -> Execute shell
+date
+echo "Release job successfully Excuted! Done..."
+apply 
+ok
+---
+Creating a chain : BDTR - {Build->Deploy->Test->Release}
+Build after other projects are built?
+select previous jobs and process further.
+---
+Install 'Build Pipeline Pluggin'
+---
+Above plugin will help to crate pipeline
++ icon
+TestBuildPipeline
+
+---
+You're running Jenkins on Windows, so you should use "Execute Windows batch command" instead of "Execute shell".
+
+🛠 Fix:
+Go to your Jenkins Job Configuration.
+
+Scroll down to the Build section.
+
+Remove the "Execute shell" build step.
+
+Add a new build step:
+👉 "Execute Windows batch command".
+
+Enter your script in batch format:
+
+bat Copy Edit
+@echo off
+date /T
+echo Build job successfully Executed! Done...
+---
+@echo off
+date /T
+echo Deploy job successfully Executed! Done...
+---
+@echo off
+date /T
+echo Test job successfully Executed! Done...
+---
+@echo off
+date /T
+echo Release job successfully Executed! Done...
+---
+Creating Delivery Pipeline
+TestDeliveryPipeline
+---------------------------------------------------------------------
+Part2-SDET Essentials|CI & CD|How to Build Pipelines with Groovy Script|Scripted & Declarative
+Using Groovy Script
+2 ways:
+1. Pipeline Script -> scripted pipeline
+2. Pipeline Script from SCM (Source Code Managemnet) -> declarative pipeline
+---
+1. Pipeline Script -> scripted pipeline
+node {
+	stage('Build')
+	{	
+		echo "Building the Project..."
+	}
+	stage('Deploy')
+	{	
+		echo "Deploying the Project..."
+	}
+	stage('Test')
+	{	
+		echo "Testing the Project..."
+	}
+	stage('Release')
+	{	
+		echo "Releasing the Project..."
+	}
+}
+---
+jenkin file should be in SCM like github :
+2. Pipeline Script from SCM (Source Code Managemnet) -> declarative pipeline
+pipeline{
+agent any
+stages 
+{
+stage('Build') 
+{
+steps{
+echo "Building the Project.........."
+}
+}
+stage('Test') 
+{
+steps{
+echo "Testing the Project.........."
+}
+}
+stage('Deploy') 
+{
+steps{
+echo "Deploying the Project.........."
+}
+}
+}
+}
+---
+*/master
+Note : blank for 'any'
+---
+
+🛠️ Where to fix it:
+In Jenkins Pipeline Configuration (e.g., in the Jenkinsfile or in the GUI):
+
+Go to Jenkins > Job > Configure
+
+Scroll to Pipeline > SCM
+
+Look for Refspec or Branches to build
+
+Change refs/heads/** to refs/heads/* or a specific branch
+
+If you're using a Multibranch Pipeline:
+
+Go to Job > Configure > Branch Sources
+
+Under Git, edit the Behaviors
+
+Modify the Advanced clone behaviours > Refspec
+---
+???? Note able to execute Groovy script with 'DeclarativeScriptedPipeLine'
