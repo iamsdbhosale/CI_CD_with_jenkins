@@ -121,6 +121,43 @@ node {
 	}
 }
 ---
+Console OUTPUT in jenkins :
+Started by user Sachin Bhosale
+
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins
+ in C:\ProgramData\Jenkins\.jenkins\workspace\ScriptedPipeline
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] echo
+Building the Project...
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy)
+[Pipeline] echo
+Deploying the Project...
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] echo
+Testing the Project...
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Release)
+[Pipeline] echo
+Releasing the Project...
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
+---
 jenkin file should be in SCM like github :
 2. Pipeline Script from SCM (Source Code Managemnet) -> declarative pipeline
 pipeline{
@@ -148,27 +185,79 @@ echo "Deploying the Project.........."
 }
 }
 ---
-*/master
-Note : blank for 'any'
+Definition : Pipeline Script from SCM
+SCM : Git
+Repositories : https://github.com/iamsdbhosale/CI_CD_with_jenkins.git
+Branches to build -> Branch Specifier (blank for 'any')? : */main
+Script Path : jenkinsfile
+Apply 
+Save 
 ---
+Console OUTPUT in jenkins:
 
-🛠️ Where to fix it:
-In Jenkins Pipeline Configuration (e.g., in the Jenkinsfile or in the GUI):
-
-Go to Jenkins > Job > Configure
-
-Scroll to Pipeline > SCM
-
-Look for Refspec or Branches to build
-
-Change refs/heads/** to refs/heads/* or a specific branch
-
-If you're using a Multibranch Pipeline:
-
-Go to Job > Configure > Branch Sources
-
-Under Git, edit the Behaviors
-
-Modify the Advanced clone behaviours > Refspec
----
-???? Note able to execute Groovy script with 'DeclarativeScriptedPipeLine'
+Started by user Sachin Bhosale
+Obtained jenkinsfile from git https://github.com/iamsdbhosale/CI_CD_with_jenkins.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in C:\ProgramData\Jenkins\.jenkins\workspace\Declarative_scriptedPipeline
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/iamsdbhosale/CI_CD_with_jenkins.git
+ > git.exe init C:\ProgramData\Jenkins\.jenkins\workspace\Declarative_scriptedPipeline # timeout=10
+Fetching upstream changes from https://github.com/iamsdbhosale/CI_CD_with_jenkins.git
+ > git.exe --version # timeout=10
+ > git --version # 'git version 2.43.0.windows.1'
+ > git.exe fetch --tags --force --progress -- https://github.com/iamsdbhosale/CI_CD_with_jenkins.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git.exe config remote.origin.url https://github.com/iamsdbhosale/CI_CD_with_jenkins.git # timeout=10
+ > git.exe config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git.exe rev-parse "refs/remotes/origin/main^{commit}" # timeout=10
+Checking out Revision 4ebb921b8a60c4d839d0389097103f36a8112034 (refs/remotes/origin/main)
+ > git.exe config core.sparsecheckout # timeout=10
+ > git.exe checkout -f 4ebb921b8a60c4d839d0389097103f36a8112034 # timeout=10
+Commit message: "jenkins pipeline.txt file is added."
+First time build. Skipping changelog.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] echo
+Building the Project..........
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy)
+[Pipeline] echo
+Deploying the Project..........
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] echo
+Testing the Project..........
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Release)
+[Pipeline] echo
+Releasing the Project..........
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
+---------------------------------------------------------------------
+Ref. : {SDET- QA : @sdetpavan }
+1. https://www.youtube.com/watch?v=1ji_9scA2C4
+2. https://www.youtube.com/watch?v=Ozna0MS5D1E
