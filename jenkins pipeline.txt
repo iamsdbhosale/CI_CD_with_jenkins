@@ -265,3 +265,60 @@ Ref. : {SDET- QA : @sdetpavan }
 How To Run Playwright With Jenkins | Integrate Playwright With Jenkins
 https://youtu.be/FZ5NlP1hL9A
 ---
+Date : 20/04/2025
+---
+mkdir pw code
+c:/pw code/git clone https://github.com/Mukesh-50/PlaywrightDemo.git
+---
+batch1
+cd C:\pw code\PlaywrightDemo
+npm install
+npx playwright install
+
+Batch2
+cd C:\pw code\PlaywrightDemo
+npx playwright test tests/example.spec.js --project=chromium --headed
+npx playwright test tests/example.spec.js --project=chromium --headed
+----------------------
+resolution for Issue:
+----------------------
+cd C:\pw code\PlaywrightDemo
+npx playwright install
+npx playwright test example.spec.js --project=chromium --headed
+---
+Execute Windows batch command
+Batch1
+cd C:\pw code\PlaywrightDemo
+npx playwright install
+---
+Batch2
+cd C:\pw code\PlaywrightDemo
+npx playwright test tests/example.spec.js --project=chromium --headed
+---
+OR
+cd C:\pw code\PlaywrightDemo
+npx playwright test tests/login.spec.js --project=chromium --headed
+---
+genkins : 
+Started by user Sachin Bhosale
+
+Running as SYSTEM
+Building in workspace C:\ProgramData\Jenkins\.jenkins\workspace\playwrightgithub
+[playwrightgithub] $ cmd /c call C:\Windows\TEMP\jenkins15148958664724759139.bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\playwrightgithub>cd C:\pw code\PlaywrightDemo 
+
+C:\pw code\PlaywrightDemo>npx playwright install 
+[playwrightgithub] $ cmd /c call C:\Windows\TEMP\jenkins6506223014010003919.bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\playwrightgithub>cd C:\pw code\PlaywrightDemo 
+
+C:\pw code\PlaywrightDemo>npx playwright test tests/login.spec.js --project=chromium --headed 
+
+
+Running 3 tests using 1 worker
+
+Â·Â·Â·
+  3 passed (10.7s)
+Finished: SUCCESS
+---
